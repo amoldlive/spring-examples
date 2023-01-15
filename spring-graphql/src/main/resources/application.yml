@@ -1,1 +1,15 @@
+spring:
+  jpa:
+    database: POSTGRESQL
+    hibernate.ddl-auto: update
+    show-sql: true
 
+  datasource:
+    platform: postgres
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/books_db
+    username: postgres
+    password: postgres
+
+  server:
+      port: 8080

@@ -23,29 +23,25 @@ public class BookController {
     }
 
     @MutationMapping("save")
-    public Book save(@Argument  Book book){
+    public Book save(@Argument Book book) {
         return bookService.save(book);
     }
 
-    @QueryMapping("books")
-    public List<Book> getAllBooks(){
+    @QueryMapping("findAll")
+    public List<Book> getAllBooks() {
         return bookService.findAll();
     }
 
-
-    @QueryMapping("book")
-    public Optional<Book> getBookById(@Argument  int id){
+    @QueryMapping("findById")
+    public Optional<Book> getBookById(@Argument Long id) {
         return bookService.findById(id);
     }
 
+    @MutationMapping("deleteById")
+    public boolean deleteBook(@Argument Long id) {
+        return bookService.deleteById(id);
 
-
-    @QueryMapping("delete")
-    public void deleteBook(@Argument  int id){
-         bookService.deleteById(id);
     }
-
-
 
 
 }

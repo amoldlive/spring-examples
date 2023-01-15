@@ -1,0 +1,20 @@
+type Query{
+    findById(id:Long):Book
+    findAll:[Book]
+}
+scalar Long
+type Mutation{
+    save(book:BookQL): Book
+    deleteById(id:Long): Boolean
+}
+type Book{
+    id: Long
+    bookName: String
+    author: String
+    date: String
+}
+input BookQL{
+    bookName: String
+    author: String
+    date: String
+}
