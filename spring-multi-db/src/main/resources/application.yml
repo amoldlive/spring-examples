@@ -1,0 +1,12 @@
+spring:
+  datasource:
+      user:
+        jdbcUrl: jdbc:postgresql://localhost:5432/user
+        username: root
+        password: root
+        driver-class-name: org.postgresql.Driver
+      product:
+        jdbcUrl: jdbc:postgresql://localhost:5432/product
+        username: root
+        password: root
+        driver-class-name: org.postgresql.Driver
