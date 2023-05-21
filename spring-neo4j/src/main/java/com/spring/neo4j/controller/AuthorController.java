@@ -3,10 +3,7 @@ package com.spring.neo4j.controller;
 import com.spring.neo4j.repository.node.Author;
 import com.spring.neo4j.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -46,8 +43,32 @@ public class AuthorController {
      * @param author the author
      * @return the author
      */
-    @PostMapping("/add/author")
+    @PostMapping("/author")
     public Author add(@RequestBody Author author){
         return authorService.add(author);
     }
+
+    /**
+     * Update author.
+     *
+     * @param author the author
+     * @return the author
+     * @throws Exception the exception
+     */
+    @PutMapping("/author")
+    public Author update(@RequestBody Author author) throws Exception {
+        return authorService.update(author);
+    }
+
+    /**
+     * Delete author.
+     *
+     * @param id the id
+     * @return the author
+     */
+    @DeleteMapping("/author/{id}")
+    public Author delete(@PathVariable Long id){
+        return authorService.delete(id);
+    }
+
 }
