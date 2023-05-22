@@ -9,49 +9,23 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * The type Author service.
- */
 @Service
 public class AuthorService {
     private final AuthorRepository authorRepository;
 
-    /**
-     * Instantiates a new Author service.
-     *
-     * @param authorRepository the author repository
-     */
     @Autowired
     public AuthorService(AuthorRepository authorRepository) {
         this.authorRepository = authorRepository;
     }
 
-    /**
-     * Get all list.
-     *
-     * @return the list
-     */
     public List<Author> getAll(){
         return authorRepository.findAll();
     }
 
-    /**
-     * Add author.
-     *
-     * @param author the author
-     * @return the author
-     */
     public Author add( Author author){
         return authorRepository.save(author);
     }
 
-    /**
-     * Update author.
-     *
-     * @param author the author
-     * @return the author
-     * @throws Exception the exception
-     */
     public Author update(Author author) throws Exception {
       Optional<Author> authorFromDB=  authorRepository.findById(author.getId());
       if(authorFromDB.isPresent()){
@@ -65,15 +39,7 @@ public class AuthorService {
       return author;
     }
 
-    /**
-     * Delete author.
-     *
-     * @param id the id
-     * @return the author
-     */
-    public Author delete(Long id) {
-        Author author=authorRepository.findById(id).get();
+    public void delete(Long id) {
         authorRepository.deleteById(id);
-        return author;
     }
 }
