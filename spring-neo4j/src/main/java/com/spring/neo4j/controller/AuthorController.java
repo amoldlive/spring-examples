@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("author")
 public class AuthorController {
-
 
     private final AuthorService authorService;
 
@@ -19,24 +19,24 @@ public class AuthorController {
     }
 
 
-    @GetMapping("/author")
-    public List<Author> getAll(){
-        return authorService.getAll();
+    @GetMapping
+    public List<Author> getAllAuthors(){
+        return authorService.getAllAuthors();
     }
 
-    @PostMapping("/author")
-    public Author add(@RequestBody Author author){
-        return authorService.add(author);
+    @PostMapping
+    public Author addAuthor(@RequestBody Author author){
+        return authorService.addAuthor(author);
     }
 
-    @PutMapping("/author")
-    public Author update(@RequestBody Author author) throws Exception {
-        return authorService.update(author);
+    @PutMapping
+    public Author updateAuthor(@RequestBody Author author)  {
+        return authorService.updateAuthor(author);
     }
 
-    @DeleteMapping("/author/{id}")
-    public void delete(@PathVariable Long id){
-         authorService.delete(id);
+    @DeleteMapping("/author/{authorId}")
+    public void deleteAuthor(@PathVariable Long authorId){
+         authorService.deleteAuthor(authorId);
     }
 
 }

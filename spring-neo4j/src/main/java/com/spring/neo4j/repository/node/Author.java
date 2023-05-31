@@ -20,5 +20,5 @@ public class Author {
     Long id;
     String name;
     @Relationship(type = "AUTHORED")
-    List<Book> bookList;
+    List<Book> books;
 }

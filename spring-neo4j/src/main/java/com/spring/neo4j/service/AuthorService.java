@@ -18,28 +18,28 @@ public class AuthorService {
         this.authorRepository = authorRepository;
     }
 
-    public List<Author> getAll(){
+    public List<Author> getAllAuthors(){
         return authorRepository.findAll();
     }
 
-    public Author add( Author author){
+    public Author addAuthor( Author author){
         return authorRepository.save(author);
     }
 
-    public Author update(Author author) throws Exception {
+    public Author updateAuthor(Author author)  {
       Optional<Author> authorFromDB=  authorRepository.findById(author.getId());
       if(authorFromDB.isPresent()){
         Author authorFromDBVal = authorFromDB.get();
-        authorFromDBVal.setBookList(author.getBookList());
+        authorFromDBVal.setBooks(author.getBooks());
         authorFromDBVal.setName(author.getName());
         authorRepository.save(authorFromDBVal);
       }else{
-          throw  new Exception("No Data Found in DB for ID "+author.getId());
+          return null;
       }
       return author;
     }
 
-    public void delete(Long id) {
+    public void deleteAuthor(Long id) {
         authorRepository.deleteById(id);
     }
 }
