@@ -12,7 +12,6 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
-import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
@@ -33,18 +32,16 @@ public class UserRepositoryConfig {
     @Bean
     @Primary
     public LocalContainerEntityManagerFactoryBean userEntityManager() {
-        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 
-        em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        em.setDataSource(userDataSource());
-        em.setPackagesToScan(
-                new String[] { "com.ad.multi.db.example.entity.user"});
+        entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        entityManagerFactoryBean.setDataSource(userDataSource());
+        entityManagerFactoryBean.setPackagesToScan("com.ad.multi.db.example.entity.user");
 
+        Map<String, Object> jpaProperties = Map.of("hibernate.hbm2ddl.auto","create");
+        entityManagerFactoryBean.setJpaPropertyMap(jpaProperties);
 
-        Map<String, Object> properties = Map.of("hibernate.hbm2ddl.auto","update");
-        em.setJpaPropertyMap(properties);
-
-        return em;
+        return entityManagerFactoryBean;
     }
 
     @Bean

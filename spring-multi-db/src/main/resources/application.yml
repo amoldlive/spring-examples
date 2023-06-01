@@ -1,12 +1,12 @@
 spring:
   datasource:
       user:
-        jdbcUrl: jdbc:postgresql://localhost:5432/user
+        jdbcUrl: jdbc:postgresql://localhost:5432/userdb
         username: root
         password: root
         driver-class-name: org.postgresql.Driver
       product:
-        jdbcUrl: jdbc:postgresql://localhost:5432/product
+        jdbcUrl: jdbc:postgresql://localhost:5432/productdb
         username: root
         password: root
         driver-class-name: org.postgresql.Driver

@@ -32,18 +32,17 @@ public class ProductRepositoryConfig {
     @Bean
     @Primary
     public LocalContainerEntityManagerFactoryBean productEntityManager() {
-        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 
-        em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        em.setDataSource(productDataSource());
-        em.setPackagesToScan(
-                new String[] { "com.ad.multi.db.example.entity.product"});
+        entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        entityManagerFactoryBean.setDataSource(productDataSource());
+        entityManagerFactoryBean.setPackagesToScan("com.ad.multi.db.example.entity.product");
+
+        Map<String, Object> jpaProperties = Map.of("hibernate.hbm2ddl.auto","create");
+        entityManagerFactoryBean.setJpaPropertyMap(jpaProperties);
 
 
-        Map<String, Object> properties = Map.of("hibernate.hbm2ddl.auto","update");
-        em.setJpaPropertyMap(properties);
-
-        return em;
+        return entityManagerFactoryBean;
     }
 
     @Bean
